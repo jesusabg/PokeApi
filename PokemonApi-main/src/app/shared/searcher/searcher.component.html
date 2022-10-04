@@ -1,0 +1,21 @@
+<header class="row">
+    <h1 class="title text-center"><img src="../../../assets/International_Pokémon_logo.svg.png" alt="logo-pokemon"></h1>
+    <div class="input-group mb-3 container-searcher">
+        <form ng-controller="validateCtrl" name="myForm" novalidate (ngSubmit)="getInputValue(user.value)"  #f="ngForm" class="col-12">
+            <input 
+            #user 
+            type="text" 
+            name="user"
+            ngModel required
+            ng-model="user"
+            autocomplete="off" 
+            class="form-control form-control-lg"
+            placeholder="Escribe el nombre de un Pokemon" 
+            id="searchinput"
+            required>
+            <input type="submit" class="btn btn-primary btn-lg" value="Buscar" 
+            [disabled]="f.invalid">
+        </form>
+
+      </div>
+</header>

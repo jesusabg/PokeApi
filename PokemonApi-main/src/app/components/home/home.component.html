@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <app-searcher></app-searcher>
+    <!-- <p >//TODO en construccion busqueda por tipo:</p>
+   <div class="container-types">
+    <button class="btn btn-primary m-1" *ngFor="let item of arr[0]">{{item.name}}</button>
+   </div> -->
+    <div class="row container-cards">
+        <mat-card *ngFor="let pokemon of pokemons | paginate:{ itemsPerPage:20, currentPage: page, totalItems: totalPokemons}" class="col-lg-3 col-md-4 col-sm-9 " id="mat-card">
+            <span class="tipo">Type</span>
+           <div class="container-header-card">
+                <div class="left-header-card">
+                    <p *ngFor="let item of pokemon.types let i=index" >{{item.type.name|titlecase}}</p>
+                </div>
+                <div class="rigth-header-card">
+                    <h3 class="id-pokemon"> {{pokemon.id}}</h3>
+                </div>
+           </div>
+            <h3 class="title-name"><span class="name">Name: </span>{{pokemon.name|titlecase}}</h3>
+           <div class="container-info-pokemon">
+            <span>Moves:</span>
+            <br>
+            <p *ngFor="let item of pokemon.moves |slice:0:3 let i=index" class="moves">
+                <span *ngIf="i<3">{{pokemon.moves[i].move.name|titlecase}}</span>
+            </p>
+            <hr>
+            <span class="abilities">Abilities:</span>
+            <br>
+            <p *ngFor="let item of pokemon.abilities |slice:0:2 let i=index" class="abilitie">
+                <span>{{pokemon.abilities[i].ability.name|titlecase}}</span>
+            </p>
+            <hr>
+            <span class="stats">Stats:</span>
+            <br>
+            <p *ngFor="let item of pokemon.stats |slice:0:3 let i=index" class="stat">
+                <span> {{pokemon.stats[i].stat.name|titlecase}} </span>
+                <span> {{pokemon.stats[i].base_stat}} </span>
+            </p>
+           </div>
+            <div class="container-image">
+                <img src="{{sprite}}{{pokemon.id}}.svg" alt="pokemon image">
+            </div>
+            
+        </mat-card>
+    </div>
+    <div class="container-paginator">
+        <pagination-controls (pageChange)="page = $event; pokemons = []; listarPokemons()" class="paginador"></pagination-controls>
+    </div>
+</body>
+</html>
